@@ -4,13 +4,28 @@ import LocalidadeLista from './LocalidadeLista'
 
 
 class App extends React.Component {
+
+  state = {
+    resultadoDaBusca: []
+  }
+
+  onBuscaRealizada = (dados) => {
+    this.setState((prevState) => ({
+      resultadoDaBusca: [dados, ...prevState.resultadoDaBusca]
+    }))
+  }
+
   render() {
     return (
       <div className='container mt-4'>
         <div className="mb-4">
-          <Busca />
+          <Busca 
+            onBuscaRealizada={this.onBuscaRealizada}
+          />
           <br />
-          <LocalidadeLista />
+          <LocalidadeLista
+            dados={this.state.resultadoDaBusca}
+          />
         </div>
       </div>
     )

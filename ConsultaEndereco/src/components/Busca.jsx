@@ -34,11 +34,13 @@ export class Busca extends Component {
                 const dados = response.data
 
                 if (dados.erro) {
-                    alert("O cep não foi encontrado")
+                    alert("O CEP não foi encontrado")
                     return
                 }
+
+                this.props.onBuscaRealizada(dados)
+
                 console.log(dados)
-                alert("Funcionou")
             })
             .catch((erro) => {
                 alert("Erro ao buscar o CEP. Verifique sua conexão ou tente novamente mais tarde.")
